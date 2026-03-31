@@ -1,0 +1,2653 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>CV3 簡答題題庫</title>
+<style>
+
+  :root {
+    --bg: #020617;
+    --panel: #0b1220;
+    --panel-2: #0f172a;
+    --panel-3: #132033;
+    --text: #f8fafc;
+    --text-soft: #e5e7eb;
+    --muted: #94a3b8;
+    --accent: #2563eb;
+    --accent-2: #1d4ed8;
+    --good: #16a34a;
+    --bad: #dc2626;
+    --warn: #f59e0b;
+    --line: #223047;
+    --chip: #132033;
+    --shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    min-height: 100%;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: radial-gradient(circle at top, #172554 0%, #0b1220 36%, #020617 100%);
+    color: var(--text-soft);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .hero {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+    border-radius: 24px;
+    padding: 24px 24px 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(148, 163, 184, 0.08);
+  }
+  .hero h1 {
+    margin: 0 0 10px;
+    font-size: clamp(26px, 4vw, 38px);
+    line-height: 1.08;
+    color: #f8fafc;
+  }
+  .hero p {
+    margin: 0;
+    color: #cbd5e1;
+    line-height: 1.65;
+    font-size: 15px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .hero-pills {
+    margin-top: 16px;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .stat {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 14px 16px;
+    min-height: 92px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .stat .k {
+    font-size: 12px;
+    color: #cbd5e1;
+  }
+  .stat .v {
+    font-size: clamp(24px, 3vw, 30px);
+    font-weight: 800;
+    margin-top: 6px;
+    color: #fff;
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 18px;
+    margin-top: 18px;
+  }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+  }
+  .sidebar {
+    padding: 16px;
+    position: sticky;
+    top: 14px;
+    align-self: start;
+  }
+  .brand {
+    background: linear-gradient(135deg, rgba(37,99,235,0.18), rgba(29,78,216,0.10));
+    border: 1px solid rgba(96,165,250,0.18);
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .brand h2 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    color: #eff6ff;
+  }
+  .brand p {
+    margin: 0;
+    color: #bfdbfe;
+    line-height: 1.55;
+    font-size: 13px;
+  }
+  .section + .section { margin-top: 16px; }
+  .section h2 {
+    margin: 0 0 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+  .quick-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .btn, .chapter-btn {
+    appearance: none;
+    border: 0;
+    border-radius: 12px;
+    padding: 11px 12px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .15s ease;
+    text-align: center;
+  }
+  .btn:hover, .chapter-btn:hover { transform: translateY(-1px); }
+  .btn:disabled, .chapter-btn:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .btn {
+    background: #1f2937;
+    color: #e5e7eb;
+    width: 100%;
+  }
+  .btn.small {
+    font-size: 13px;
+    padding: 10px 11px;
+  }
+  .btn.primary,
+  .btn.active {
+    background: var(--accent);
+    color: white;
+  }
+  .btn.primary:hover,
+  .btn.active:hover { background: var(--accent-2); }
+  .btn.ghost {
+    background: #111827;
+    color: #cbd5e1;
+    border: 1px solid #314257;
+  }
+  .btn.good {
+    background: #133120;
+    color: #bbf7d0;
+  }
+  .btn.bad {
+    background: #3f1d1d;
+    color: #fecaca;
+  }
+  .btn.good.active {
+    outline: 2px solid rgba(34,197,94,.5);
+    outline-offset: 0;
+  }
+  .btn.bad.active {
+    outline: 2px solid rgba(239,68,68,.45);
+    outline-offset: 0;
+  }
+  .chapter-list {
+    display: grid;
+    gap: 8px;
+    max-height: 46vh;
+    overflow: auto;
+    padding-right: 4px;
+  }
+  .chapter-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    padding: 9px 10px;
+    background: #0f172a;
+    color: #e5e7eb;
+    border: 1px solid #223047;
+    font-size: 13px;
+    text-align: left;
+  }
+  .chapter-btn .count {
+    color: #94a3b8;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .chapter-btn.active {
+    background: #1e3a8a;
+    border-color: #60a5fa;
+    color: #eff6ff;
+  }
+  .chapter-btn.active .count { color: #bfdbfe; }
+  .main {
+    display: grid;
+    gap: 18px;
+    min-width: 0;
+  }
+  .mobile-chapters {
+    display: none;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .mobile-chapters .chapter-btn {
+    width: auto;
+    min-width: 130px;
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+  .statusbar {
+    padding: 14px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .statusbar .bar-copy {
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .controls .btn {
+    min-width: 112px;
+    width: auto;
+  }
+  .pillbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pill {
+    background: #132033;
+    color: #bfdbfe;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    border: 1px solid rgba(96,165,250,0.12);
+  }
+  .question-card,
+  .answer-wrap,
+  .nav-panel,
+  .empty {
+    padding: 20px;
+  }
+  .question-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .chip {
+    background: #0f172a;
+    color: #cbd5e1;
+    border: 1px solid #334155;
+    border-radius: 999px;
+    padding: 7px 11px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .q-label {
+    color: #93c5fd;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .question-text {
+    font-size: clamp(25px, 2.3vw, 45px);
+    line-height: 1.48;
+    font-weight: 800;
+    margin: 0;
+    color: #f8fafc;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .answer-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .answer-title {
+    margin: 0;
+    font-size: 18px;
+    color: #f8fafc;
+  }
+  .answer-body {
+    color: #e5e7eb;
+    font-size: 20px;
+    line-height: 1.75;
+    white-space: pre-wrap;
+    word-break: break-word;
+    border-top: 1px dashed #334155;
+    padding-top: 16px;
+  }
+  .nav-row {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .footer-note {
+    color: #94a3b8;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .footer-note code {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: #e5e7eb;
+    padding: 2px 6px;
+    border-radius: 8px;
+  }
+  .hero-note {
+    margin-top: 14px;
+    color: #cbd5e1;
+  }
+  .empty {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 16px;
+  }
+  .hidden {
+    display: none !important;
+  }
+  @media (max-width: 1100px) {
+    .hero-grid, .layout {
+      grid-template-columns: 1fr;
+    }
+    .sidebar {
+      position: static;
+    }
+    .mobile-chapters {
+      display: flex;
+    }
+  }
+  @media (max-width: 820px) {
+    .wrap { padding: 14px; }
+    .hero { padding: 18px; }
+    .hero-stats { grid-template-columns: 1fr; }
+    .quick-grid, .nav-row { grid-template-columns: 1fr 1fr; }
+    .controls { width: 100%; }
+    .controls .btn { flex: 1; width: auto; }
+    .question-card, .answer-wrap, .nav-panel, .empty { padding: 16px; }
+  }
+  @media (max-width: 560px) {
+    .quick-grid, .nav-row { grid-template-columns: 1fr; }
+    .btn-row { flex-direction: column; }
+    .pillbar { gap: 6px; }
+    .pill { font-size: 12px; }
+    .question-text { font-size: 21px; }
+  }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <h1>CV3 Short Answer Drill Deck</h1>
+        <p>外觀已改成你參考檔那種卡片式深色風格；題庫 JSON 與出題邏輯保留原樣，方便你之後繼續自己改題。</p>
+        <div class="pillbar hero-pills">
+          <span class="pill" id="statusChapter">章節：全部</span>
+          <span class="pill" id="statusMode">模式：全部順序</span>
+          <span class="pill" id="statusIndex">第 0 / 0 題</span>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="k">總題數</div><div class="v" id="statTotal">0</div></div>
+        <div class="stat"><div class="k">錯題</div><div class="v" id="statWrong">0</div></div>
+        <div class="stat"><div class="k">重點</div><div class="v" id="statImportant">0</div></div>
+      </div>
+    </div>
+    <div class="footer-note hero-note">鍵盤快捷鍵：<strong>← / →</strong> 換題，<strong>A</strong> 顯示答案，<strong>W</strong> 標錯，<strong>I</strong> 標重點，<strong>R</strong> 隨機一題。</div>
+  </section>
+
+  <div class="layout">
+    <aside class="panel sidebar">
+      <div class="brand">
+        <h2>CV3 簡答題題庫</h2>
+        <p>本地保存錯題與重點標記</p>
+      </div>
+
+      <div class="section">
+        <h2>題目模式</h2>
+        <div class="quick-grid">
+          <button class="btn small primary" id="mode-all-seq">全部順序</button>
+          <button class="btn small" id="mode-all-shuffle">全部亂序</button>
+          <button class="btn small" id="mode-wrong-seq">只看錯題</button>
+          <button class="btn small" id="mode-wrong-shuffle">錯題亂序</button>
+          <button class="btn small" id="mode-important-seq">只看重點</button>
+          <button class="btn small" id="mode-important-shuffle">重點亂序</button>
+        </div>
+        <div class="btn-row">
+          <button class="btn small" id="pick-random" style="flex:1;">隨機一題</button>
+          <button class="btn small ghost" id="reset-view" style="flex:1;">重置視圖</button>
+        </div>
+      </div>
+
+      <div class="section chapter-section">
+        <h2>章節列表</h2>
+        <div class="chapter-list" id="chapterList"></div>
+      </div>
+
+      <div class="section">
+        <h2>本地保存</h2>
+        <div class="footer-note">
+          錯題與重點標記會保存在本機瀏覽器 <code>localStorage</code>。<br>
+          之後重新打開同一個 HTML，標記仍會保留。
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="mobile-chapters" id="mobileChapterList"></div>
+
+      <section class="panel statusbar">
+        <div class="bar-copy">目前題目</div>
+        <div class="controls">
+          <button class="btn primary" id="prevBtn">上一題</button>
+          <button class="btn primary" id="nextBtn">下一題</button>
+        </div>
+      </section>
+
+      <section class="panel question-card" id="questionCard">
+        <div class="question-meta" id="questionMeta"></div>
+        <div class="q-label">Short Answer Question</div>
+        <h2 class="question-text" id="questionText"></h2>
+      </section>
+
+      <section class="panel answer-wrap" id="answerWrap">
+        <div class="answer-head">
+          <h3 class="answer-title">答案</h3>
+          <button class="btn small primary" id="toggleAnswerBtn">顯示答案</button>
+        </div>
+        <div class="answer-body hidden" id="answerBody"></div>
+      </section>
+
+      <section class="panel nav-panel">
+        <div class="nav-row">
+          <button class="btn good" id="importantBtn">⭐ 重要標記</button>
+          <button class="btn bad" id="wrongBtn">❌ 標記錯題</button>
+          <button class="btn ghost" id="copyBtn">📋 複製題目</button>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        題庫資料直接寫在這個 HTML 內的 JSON。你之後要改題目時，搜尋 <code>&lt;script id="qa-data" type="application/json"&gt;</code> 就能直接修改。
+      </div>
+
+      <div class="panel empty hidden" id="emptyState">
+        目前這個篩選條件下沒有題目。<br>
+        可以切回「全部順序」或取消章節 / 錯題 / 重點限制。
+      </div>
+    </main>
+  </div>
+</div>
+<script id="qa-data" type="application/json">
+[
+  {
+    "id": "q001",
+    "chapter": 1,
+    "chapterTitle": "Chapter 1 · Introduction & Task Definitions",
+    "question": "What distinguishes high-level computer vision from low-level computer vision?",
+    "answer": "High-level vision focuses on semantic understanding such as detection, segmentation, and tracking. Low-level vision focuses on image structure and physics such as depth or optical flow."
+  },
+  {
+    "id": "q002",
+    "chapter": 1,
+    "chapterTitle": "Chapter 1 · Introduction & Task Definitions",
+    "question": "What is the main goal of computer vision in one sentence?",
+    "answer": "The goal is to enable machines to understand visual data and act on that understanding."
+  },
+  {
+    "id": "q003",
+    "chapter": 1,
+    "chapterTitle": "Chapter 1 · Introduction & Task Definitions",
+    "question": "Name three core tasks covered in this course.",
+    "answer": "Object detection, image/video segmentation, and object tracking."
+  },
+  {
+    "id": "q004",
+    "chapter": 1,
+    "chapterTitle": "Chapter 1 · Introduction & Task Definitions",
+    "question": "Why is object detection considered a coarse representation?",
+    "answer": "Because it represents an object by a bounding box instead of a pixel-accurate mask."
+  },
+  {
+    "id": "q005",
+    "chapter": 1,
+    "chapterTitle": "Chapter 1 · Introduction & Task Definitions",
+    "question": "What is semantic segmentation?",
+    "answer": "Semantic segmentation assigns a semantic class label to every pixel in the image."
+  },
+  {
+    "id": "q006",
+    "chapter": 1,
+    "chapterTitle": "Chapter 1 · Introduction & Task Definitions",
+    "question": "What is instance segmentation?",
+    "answer": "Instance segmentation assigns a class label to each pixel and also separates different object instances of the same class."
+  },
+  {
+    "id": "q007",
+    "chapter": 1,
+    "chapterTitle": "Chapter 1 · Introduction & Task Definitions",
+    "question": "What is panoptic segmentation?",
+    "answer": "Panoptic segmentation unifies semantic and instance segmentation by assigning every pixel either a stuff class or a thing instance label."
+  },
+  {
+    "id": "q008",
+    "chapter": 1,
+    "chapterTitle": "Chapter 1 · Introduction & Task Definitions",
+    "question": "Why is the temporal domain useful in video understanding?",
+    "answer": "It provides motion information and consistency across frames, which helps association and prediction."
+  },
+  {
+    "id": "q009",
+    "chapter": 1,
+    "chapterTitle": "Chapter 1 · Introduction & Task Definitions",
+    "question": "What is the smoothness assumption in videos?",
+    "answer": "It assumes that frames and object motion change gradually over time rather than abruptly."
+  },
+  {
+    "id": "q010",
+    "chapter": 1,
+    "chapterTitle": "Chapter 1 · Introduction & Task Definitions",
+    "question": "Name two common challenges in video analysis.",
+    "answer": "Occlusions, high computational cost, frame redundancy, fast motion, and appearance changes are common challenges."
+  },
+  {
+    "id": "q011",
+    "chapter": 1,
+    "chapterTitle": "Chapter 1 · Introduction & Task Definitions",
+    "question": "How many parameters are commonly used to define a bounding box?",
+    "answer": "Four parameters, usually x, y, w, h."
+  },
+  {
+    "id": "q012",
+    "chapter": 1,
+    "chapterTitle": "Chapter 1 · Introduction & Task Definitions",
+    "question": "Is the parameterization of a bounding box unique?",
+    "answer": "No. The same box can be parameterized in different equivalent ways, for example by center or corner coordinates."
+  },
+  {
+    "id": "q013",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "What is object detection?",
+    "answer": "Object detection predicts both the class of an object and its bounding box location."
+  },
+  {
+    "id": "q014",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "What are the two main outputs of an object detector?",
+    "answer": "Class scores or probabilities and bounding box coordinates."
+  },
+  {
+    "id": "q015",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "What is the idea of sliding window detection?",
+    "answer": "A fixed-size window is moved across the image and each window is classified to decide whether it contains the object."
+  },
+  {
+    "id": "q016",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "Why is sliding window detection computationally expensive?",
+    "answer": "Because the detector must evaluate many positions, scales, and aspect ratios across the image."
+  },
+  {
+    "id": "q017",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "How does template matching with sliding windows operate?",
+    "answer": "It compares a template with many image patches using a similarity or distance measure and reports locations with high similarity."
+  },
+  {
+    "id": "q018",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "Name one major disadvantage of template matching.",
+    "answer": "It is sensitive to appearance changes, occlusion, pose changes, and scale variation."
+  },
+  {
+    "id": "q019",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "What does SSD mean in template matching?",
+    "answer": "It is the Sum of Squared Differences between the template pixels and the image patch pixels."
+  },
+  {
+    "id": "q020",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "Why is NCC often preferred over SSD?",
+    "answer": "Because NCC is more robust to global illumination changes."
+  },
+  {
+    "id": "q021",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "What does ZNCC additionally normalize compared with NCC?",
+    "answer": "ZNCC also normalizes the mean intensity, making it more robust to brightness shifts."
+  },
+  {
+    "id": "q022",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "Why can template matching produce false detections?",
+    "answer": "Because background regions with similar local structure can also match the template well."
+  },
+  {
+    "id": "q023",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "What is the key idea of feature-based detection?",
+    "answer": "Instead of matching raw pixels, it uses more robust features and learns a classifier on those features."
+  },
+  {
+    "id": "q024",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "Why are gradients useful for detection?",
+    "answer": "Gradients capture local shape and edge information and are less sensitive to illumination changes than raw intensities."
+  },
+  {
+    "id": "q025",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "What does HOG represent?",
+    "answer": "HOG represents a local histogram of gradient orientations, usually weighted by gradient magnitude."
+  },
+  {
+    "id": "q026",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "How is a HOG-based detector typically trained?",
+    "answer": "Extract HOG features from positive and negative samples and train a classifier such as an SVM to separate object from background."
+  },
+  {
+    "id": "q027",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "What is the role of the SVM in HOG detection?",
+    "answer": "It learns the decision boundary that separates object HOG descriptors from background descriptors."
+  },
+  {
+    "id": "q028",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "What is the main idea of the Deformable Part Model?",
+    "answer": "An object is modeled as a set of parts, and detection succeeds if the parts are found in a plausible spatial configuration."
+  },
+  {
+    "id": "q029",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "Why are deformable part models useful?",
+    "answer": "Because many objects are not rigid and their parts can move relative to each other."
+  },
+  {
+    "id": "q030",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "What is the core idea of the Viola–Jones detector?",
+    "answer": "It uses simple Haar-like features combined by AdaBoost in a cascade for fast detection."
+  },
+  {
+    "id": "q031",
+    "chapter": 2,
+    "chapterTitle": "Chapter 2 · Detection Basics & Classical Methods",
+    "question": "How does AdaBoost help in Viola–Jones?",
+    "answer": "It combines many weak learners into a stronger classifier by focusing on hard training examples."
+  },
+  {
+    "id": "q032",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "What is a two-stage object detector?",
+    "answer": "A two-stage detector first generates candidate object regions and then classifies and refines them."
+  },
+  {
+    "id": "q033",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "What is objectness?",
+    "answer": "Objectness is a class-agnostic score indicating how likely a region contains an object."
+  },
+  {
+    "id": "q034",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "What is the purpose of object proposals?",
+    "answer": "They reduce the number of candidate regions that need expensive classification and box refinement."
+  },
+  {
+    "id": "q035",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "Name two classical object proposal methods.",
+    "answer": "Selective Search and Edge Boxes."
+  },
+  {
+    "id": "q036",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "What is the main idea of Selective Search?",
+    "answer": "It starts from an oversegmentation and greedily merges similar neighboring regions to generate proposals."
+  },
+  {
+    "id": "q037",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "What is the main idea of Edge Boxes?",
+    "answer": "Boxes that enclose many contours and cut through few contours are considered more likely to contain objects."
+  },
+  {
+    "id": "q038",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "What is the key idea behind the R-CNN family?",
+    "answer": "Use CNN features extracted from candidate regions for classification and localization."
+  },
+  {
+    "id": "q039",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "Outline the R-CNN pipeline.",
+    "answer": "Generate region proposals, warp each proposal to a fixed size, extract CNN features, classify the region, and refine the box."
+  },
+  {
+    "id": "q040",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "Why is R-CNN slow at inference time?",
+    "answer": "Because the CNN is run separately for each proposal, often thousands of times per image."
+  },
+  {
+    "id": "q041",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "Why is the original R-CNN training pipeline considered complex?",
+    "answer": "Because fine-tuning the CNN, training SVMs, and training box regressors are done in separate stages."
+  },
+  {
+    "id": "q042",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "What element of R-CNN forces crops to be resized to a fixed input size?",
+    "answer": "The fully connected layers require a fixed-size input representation."
+  },
+  {
+    "id": "q043",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "What problem does Spatial Pyramid Pooling solve?",
+    "answer": "It converts feature maps of arbitrary spatial size into a fixed-length representation."
+  },
+  {
+    "id": "q044",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "How does Fast R-CNN improve over R-CNN?",
+    "answer": "It computes convolutional features once per image and shares them across all RoIs."
+  },
+  {
+    "id": "q045",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "What is RoI Pooling?",
+    "answer": "RoI Pooling converts an arbitrarily sized region on a feature map into a fixed-size feature tensor using spatial bins and pooling."
+  },
+  {
+    "id": "q046",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "Why is Fast R-CNN faster than R-CNN?",
+    "answer": "Because the expensive convolutional computation is shared across all proposals."
+  },
+  {
+    "id": "q047",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "What component is added in Faster R-CNN?",
+    "answer": "A Region Proposal Network, or RPN."
+  },
+  {
+    "id": "q048",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "What does the RPN predict for each anchor?",
+    "answer": "It predicts an objectness score and bounding box offsets."
+  },
+  {
+    "id": "q049",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "What are anchors in Faster R-CNN?",
+    "answer": "Anchors are predefined boxes of different scales and aspect ratios placed at each feature-map location."
+  },
+  {
+    "id": "q050",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "How are anchors labeled during RPN training?",
+    "answer": "High-IoU anchors are positive, low-IoU anchors are negative, and ambiguous anchors are often ignored."
+  },
+  {
+    "id": "q051",
+    "chapter": 3,
+    "chapterTitle": "Chapter 3 · Two-Stage Detectors",
+    "question": "What are the four main loss terms in Faster R-CNN?",
+    "answer": "RPN classification loss, RPN regression loss, detector classification loss, and detector regression loss."
+  },
+  {
+    "id": "q052",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What is a one-stage detector?",
+    "answer": "A one-stage detector predicts classes and bounding boxes directly from dense feature maps in one forward pass."
+  },
+  {
+    "id": "q053",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "How does a one-stage detector differ from a two-stage detector?",
+    "answer": "It skips explicit proposal generation and performs dense prediction directly."
+  },
+  {
+    "id": "q054",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "Why are one-stage detectors usually faster?",
+    "answer": "Because they avoid a separate proposal stage and classify boxes directly on feature maps."
+  },
+  {
+    "id": "q055",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What is the main training difficulty of one-stage detectors?",
+    "answer": "Extreme foreground–background imbalance due to many easy negative anchors or locations."
+  },
+  {
+    "id": "q056",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What is the main idea of YOLO?",
+    "answer": "It divides the image into a grid and directly predicts boxes, objectness, and class probabilities."
+  },
+  {
+    "id": "q057",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "Why is early YOLO less robust to scale variation?",
+    "answer": "Because it predicts from coarse feature maps, so small objects may be poorly represented."
+  },
+  {
+    "id": "q058",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What is the main idea of SSD?",
+    "answer": "It performs detection on multiple feature maps at different resolutions so objects of different sizes can be detected."
+  },
+  {
+    "id": "q059",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "Why do multiple feature maps help SSD?",
+    "answer": "Different resolutions are naturally suited to different object scales."
+  },
+  {
+    "id": "q060",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What is a Feature Pyramid Network?",
+    "answer": "An FPN builds a multi-scale feature hierarchy by combining deep semantic features with shallow high-resolution features."
+  },
+  {
+    "id": "q061",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What are the key operations in FPN?",
+    "answer": "Top-down upsampling, lateral connections, 1×1 convolutions, and feature fusion by addition."
+  },
+  {
+    "id": "q062",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "Why is FPN especially helpful for small objects?",
+    "answer": "It injects stronger semantics into higher-resolution feature maps, which helps detect small objects."
+  },
+  {
+    "id": "q063",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What is focal loss?",
+    "answer": "Focal loss is a modified cross-entropy loss that down-weights easy examples so training focuses on hard ones."
+  },
+  {
+    "id": "q064",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "Write the focal loss formula.",
+    "answer": "FL(pt) = -(1 - pt)^γ log(pt)."
+  },
+  {
+    "id": "q065",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What problem of cross-entropy does focal loss solve in dense detection?",
+    "answer": "It reduces the dominance of the many easy negatives during training."
+  },
+  {
+    "id": "q066",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What is the role of γ in focal loss?",
+    "answer": "It controls how strongly easy examples are down-weighted."
+  },
+  {
+    "id": "q067",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What can happen if γ is set too high?",
+    "answer": "The model may over-focus on a small set of hard examples and optimization can become unstable or too weak on the rest."
+  },
+  {
+    "id": "q068",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What is RetinaNet?",
+    "answer": "RetinaNet is a one-stage detector that combines FPN with focal loss."
+  },
+  {
+    "id": "q069",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What is dataset bias in detection?",
+    "answer": "It means the training and test distributions differ, so a detector may fail on unseen variations."
+  },
+  {
+    "id": "q070",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What is equivariance in computer vision?",
+    "answer": "Equivariance means that transforming the input causes the output to transform in a corresponding way."
+  },
+  {
+    "id": "q071",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What is a Spatial Transformer Network?",
+    "answer": "An STN is a differentiable module that learns a spatial transformation to align images or features."
+  },
+  {
+    "id": "q072",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What are the learned parameters θ in an STN?",
+    "answer": "They parameterize the spatial transformation, often an affine transform."
+  },
+  {
+    "id": "q073",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "What is the benefit of STNs for localization?",
+    "answer": "They can learn to focus on relevant regions without explicit transformation labels."
+  },
+  {
+    "id": "q074",
+    "chapter": 4,
+    "chapterTitle": "Chapter 4 · One-Stage Detectors, FPN & STN",
+    "question": "Can STNs be applied only to raw images?",
+    "answer": "No. They can also be applied in feature space."
+  },
+  {
+    "id": "q075",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "What is IoU?",
+    "answer": "IoU is Intersection over Union, the area of overlap divided by the area of union between prediction and ground truth."
+  },
+  {
+    "id": "q076",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "How is IoU used in detection evaluation?",
+    "answer": "It defines whether a predicted box matches a ground-truth box strongly enough to count as a true positive."
+  },
+  {
+    "id": "q077",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "What is a true positive in object detection?",
+    "answer": "A prediction that matches an unmatched ground-truth box above the IoU threshold."
+  },
+  {
+    "id": "q078",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "What is a false positive in object detection?",
+    "answer": "A prediction that does not match any valid ground-truth box."
+  },
+  {
+    "id": "q079",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "What is a false negative in object detection?",
+    "answer": "A ground-truth object that was not detected by any valid prediction."
+  },
+  {
+    "id": "q080",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "Define precision.",
+    "answer": "Precision = TP / (TP + FP). It measures how many predicted detections are correct."
+  },
+  {
+    "id": "q081",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "Define recall.",
+    "answer": "Recall = TP / (TP + FN). It measures how many real objects were found."
+  },
+  {
+    "id": "q082",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "Why do conflicts need to be resolved when matching predictions to ground truth?",
+    "answer": "Because one prediction should match at most one ground-truth box and one ground-truth box should match at most one prediction."
+  },
+  {
+    "id": "q083",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "What is Non-Maximum Suppression?",
+    "answer": "NMS removes redundant overlapping boxes by keeping the highest-scoring box and suppressing overlapping lower-scoring boxes."
+  },
+  {
+    "id": "q084",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "Why is NMS needed?",
+    "answer": "Because detectors often produce many overlapping boxes for the same object."
+  },
+  {
+    "id": "q085",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "What happens when the NMS threshold is set too low?",
+    "answer": "Too many boxes are removed, so recall may drop because correct detections can be suppressed."
+  },
+  {
+    "id": "q086",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "What happens when the NMS threshold is set too high?",
+    "answer": "Too many overlapping boxes remain, so precision may drop because of more false positives."
+  },
+  {
+    "id": "q087",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "What is Average Precision (AP)?",
+    "answer": "AP is the area under the precision–recall curve for one class."
+  },
+  {
+    "id": "q088",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "Outline the algorithmic steps to compute AP.",
+    "answer": "Sort predictions by confidence, mark each as TP or FP using IoU matching, compute cumulative TP and FP, compute precision and recall at every rank, then integrate the precision–recall curve."
+  },
+  {
+    "id": "q089",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "What is mAP?",
+    "answer": "mAP is the mean Average Precision across classes, and in some benchmarks also across multiple IoU thresholds."
+  },
+  {
+    "id": "q090",
+    "chapter": 5,
+    "chapterTitle": "Chapter 5 · Detection Evaluation",
+    "question": "What does AP0.75 mean?",
+    "answer": "It means AP is computed using an IoU matching threshold of 0.75."
+  },
+  {
+    "id": "q091",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "Why do we need tracking in videos?",
+    "answer": "Tracking maintains object identity over time, supports motion reasoning, and helps build a dynamic model of the scene."
+  },
+  {
+    "id": "q092",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What is tracking-by-detection?",
+    "answer": "Tracking-by-detection detects objects in each frame and then associates detections across frames."
+  },
+  {
+    "id": "q093",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What is the main difficulty in tracking-by-detection?",
+    "answer": "Data association: deciding which detection in one frame corresponds to which object in another frame."
+  },
+  {
+    "id": "q094",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What is a motion prior in tracking?",
+    "answer": "A motion prior predicts where the object is likely to be in the next frame based on past motion."
+  },
+  {
+    "id": "q095",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What is the main assumption behind background extraction with SVD?",
+    "answer": "The background is nearly constant across frames and therefore forms a low-rank component."
+  },
+  {
+    "id": "q096",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "How can video frames be arranged for SVD-based background modeling?",
+    "answer": "Vectorize each frame and stack the vectors into a large matrix, then use low-rank approximation to recover the background."
+  },
+  {
+    "id": "q097",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What is background subtraction?",
+    "answer": "It subtracts a background model from the current frame so that moving foreground objects remain."
+  },
+  {
+    "id": "q098",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What are the hidden state and observation in Bayesian tracking?",
+    "answer": "The hidden state is the true object state such as position, and the observation is the image measurement or detection."
+  },
+  {
+    "id": "q099",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What does the likelihood term represent in Bayesian tracking?",
+    "answer": "It measures how compatible the current observation is with a candidate state."
+  },
+  {
+    "id": "q100",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What does the prior term represent in Bayesian tracking?",
+    "answer": "It encodes the predicted state before seeing the current observation."
+  },
+  {
+    "id": "q101",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What is the posterior in Bayesian tracking?",
+    "answer": "It is the updated belief about the state after combining prior and observation through Bayes’ rule."
+  },
+  {
+    "id": "q102",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "Why is recursion useful in Bayesian tracking?",
+    "answer": "It allows sequential updates using only the previous posterior instead of reprocessing the full history."
+  },
+  {
+    "id": "q103",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What is the posterior mean estimator?",
+    "answer": "It estimates the state by taking the expected value of the posterior distribution."
+  },
+  {
+    "id": "q104",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What is the MAP estimator?",
+    "answer": "It estimates the state by selecting the state with the highest posterior probability."
+  },
+  {
+    "id": "q105",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What is online tracking?",
+    "answer": "Online tracking estimates the current state using only current and past observations."
+  },
+  {
+    "id": "q106",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What is offline tracking?",
+    "answer": "Offline tracking estimates states using the full video, including future frames."
+  },
+  {
+    "id": "q107",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "Why can offline tracking be more accurate?",
+    "answer": "Because future frames can help resolve ambiguities and recover from short-term occlusions."
+  },
+  {
+    "id": "q108",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What is the input of GOTURN?",
+    "answer": "A template crop from the previous frame and a search region from the current frame."
+  },
+  {
+    "id": "q109",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What does GOTURN output?",
+    "answer": "A bounding box for the target inside the current search region."
+  },
+  {
+    "id": "q110",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What temporal prior does GOTURN effectively use?",
+    "answer": "It assumes the target stays close to its previous position because the search region is cropped around the last known location."
+  },
+  {
+    "id": "q111",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What is a key weakness of GOTURN?",
+    "answer": "Its motion prior is too simple, so it struggles with fast motion and occlusion."
+  },
+  {
+    "id": "q112",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What is online adaptation in tracking?",
+    "answer": "It means updating the appearance model during inference so it can follow changes in object appearance."
+  },
+  {
+    "id": "q113",
+    "chapter": 6,
+    "chapterTitle": "Chapter 6 · Tracking Basics & Single-Object Tracking",
+    "question": "What is the idea of MDNet?",
+    "answer": "It learns shared features across domains and adapts at test time to the target sequence by fine-tuning a classifier."
+  },
+  {
+    "id": "q114",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What makes multi-object tracking harder than single-object tracking?",
+    "answer": "There are multiple similar objects, more occlusions, and much harder identity assignment."
+  },
+  {
+    "id": "q115",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What is bipartite matching in MOT?",
+    "answer": "It assigns predicted tracks to current detections by minimizing a global assignment cost."
+  },
+  {
+    "id": "q116",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What algorithm is commonly used for bipartite matching in tracking?",
+    "answer": "The Hungarian algorithm."
+  },
+  {
+    "id": "q117",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What is the purpose of the cost matrix in tracking?",
+    "answer": "It stores the pairwise matching costs between existing tracks and current detections."
+  },
+  {
+    "id": "q118",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What simple motion-based cost is often used?",
+    "answer": "One minus IoU between predicted and detected boxes."
+  },
+  {
+    "id": "q119",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What assumption is implicit when IoU alone is used for matching?",
+    "answer": "That motion between frames is small so the correct boxes still overlap sufficiently."
+  },
+  {
+    "id": "q120",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "Why is IoU alone often insufficient for MOT?",
+    "answer": "Because fast motion, missed detections, and occlusions can break spatial overlap."
+  },
+  {
+    "id": "q121",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What is ReID in tracking?",
+    "answer": "ReID learns appearance embeddings so the same identity is close in feature space across frames."
+  },
+  {
+    "id": "q122",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What is metric learning?",
+    "answer": "Metric learning trains representations so similar samples are close and dissimilar samples are far apart."
+  },
+  {
+    "id": "q123",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What is a positive pair in ReID?",
+    "answer": "Two samples of the same identity."
+  },
+  {
+    "id": "q124",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What is a negative pair in ReID?",
+    "answer": "Two samples of different identities."
+  },
+  {
+    "id": "q125",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What is the idea of the hinge loss in metric learning?",
+    "answer": "Positive pairs should have small distance, and negative pairs should be at least a margin apart."
+  },
+  {
+    "id": "q126",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "Write the triplet loss used in ReID.",
+    "answer": "L = max(0, m + d(A,P) - d(A,N))."
+  },
+  {
+    "id": "q127",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What does the triplet loss enforce?",
+    "answer": "It enforces that the negative should be farther from the anchor than the positive by at least margin m."
+  },
+  {
+    "id": "q128",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "Why do we add appearance features to MOT cost computation?",
+    "answer": "They help maintain identity when motion cues are weak or ambiguous."
+  },
+  {
+    "id": "q129",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What is Tracktor?",
+    "answer": "Tracktor is a regression-based tracker that propagates previous detections to the next frame using a detector’s box regressor."
+  },
+  {
+    "id": "q130",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "How does Tracktor perform inference?",
+    "answer": "It copies boxes from the previous frame, refines them with the detector’s regression head, and runs detection for new objects."
+  },
+  {
+    "id": "q131",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "Why does Tracktor not need video data for training?",
+    "answer": "Because it reuses a detector trained on images and exploits its regression ability at inference time."
+  },
+  {
+    "id": "q132",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What is the main idea of offline tracking with network flow?",
+    "answer": "Represent detections as graph nodes and temporal associations as edges, then solve a global min-cost flow problem."
+  },
+  {
+    "id": "q133",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What is the advantage of offline tracking as graph optimization?",
+    "answer": "It finds a global solution over a batch of frames and can better recover from short occlusions."
+  },
+  {
+    "id": "q134",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What is a GNN tracker trying to learn?",
+    "answer": "It learns node and edge representations and performs message passing so edge scores represent association likelihood."
+  },
+  {
+    "id": "q135",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What are typical initial edge features in a GNN tracker?",
+    "answer": "Motion-based distances such as box geometry and appearance-based distances such as cosine feature distance."
+  },
+  {
+    "id": "q136",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What is message passing in a GNN tracker?",
+    "answer": "It iteratively updates edge and node embeddings by aggregating information from neighboring nodes and edges."
+  },
+  {
+    "id": "q137",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What is the classifier output in a GNN tracker?",
+    "answer": "A similarity or match probability for each edge between past tracks and current detections."
+  },
+  {
+    "id": "q138",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "Name three common MOT evaluation metrics.",
+    "answer": "MOTA, MOTP, and IDF1."
+  },
+  {
+    "id": "q139",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What does MOTA roughly measure?",
+    "answer": "Overall tracking accuracy by combining false positives, false negatives, and identity switches."
+  },
+  {
+    "id": "q140",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What does MOTP roughly measure?",
+    "answer": "Localization precision of matched tracks."
+  },
+  {
+    "id": "q141",
+    "chapter": 7,
+    "chapterTitle": "Chapter 7 · Multi-Object Tracking, ReID & GNNs",
+    "question": "What does IDF1 emphasize?",
+    "answer": "Identity consistency over time."
+  },
+  {
+    "id": "q142",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "What is the goal of image segmentation?",
+    "answer": "To assign labels to image pixels so that meaningful regions or objects are separated."
+  },
+  {
+    "id": "q143",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "What is the difference between semantic and instance segmentation?",
+    "answer": "Semantic segmentation labels all pixels by class, while instance segmentation also separates individual object instances."
+  },
+  {
+    "id": "q144",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "What are stuff and things in panoptic segmentation?",
+    "answer": "Stuff refers to amorphous background classes like road or sky, and things refers to countable object instances like person or car."
+  },
+  {
+    "id": "q145",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "What is a superpixel?",
+    "answer": "A superpixel is a local grouping of nearby pixels into a small region with similar appearance."
+  },
+  {
+    "id": "q146",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "Why can segmentation be viewed as clustering?",
+    "answer": "Because pixels or regions can be grouped by similarity in color, texture, features, or connectivity."
+  },
+  {
+    "id": "q147",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "Outline the K-means algorithm.",
+    "answer": "Initialize K centers, assign each point to the nearest center, recompute centers from assigned points, and repeat until convergence."
+  },
+  {
+    "id": "q148",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "What are the main weaknesses of K-means for segmentation?",
+    "answer": "It is sensitive to initialization, assumes simple cluster structure, and requires the number of clusters K in advance."
+  },
+  {
+    "id": "q149",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "What is K-means++?",
+    "answer": "It is an improved initialization strategy that selects initial centers to be more spread out."
+  },
+  {
+    "id": "q150",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "Why can Euclidean distance be insufficient for segmentation?",
+    "answer": "Because it may ignore connectedness and complex region structure."
+  },
+  {
+    "id": "q151",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "What is spectral clustering?",
+    "answer": "It treats data as a graph, builds similarities between nodes, and uses Laplacian eigenvectors to obtain clusters."
+  },
+  {
+    "id": "q152",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "What does the graph Laplacian encode intuitively?",
+    "answer": "It measures how different a node’s value is from the average of its neighbors."
+  },
+  {
+    "id": "q153",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "Why is spectral clustering useful for segmentation?",
+    "answer": "It can capture connectedness and complex non-convex cluster structure."
+  },
+  {
+    "id": "q154",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "What is the main computational drawback of spectral clustering?",
+    "answer": "It requires an eigendecomposition, which can be expensive."
+  },
+  {
+    "id": "q155",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "What problem does Normalized Cuts address compared with plain min-cut?",
+    "answer": "It avoids trivial unbalanced cuts that isolate tiny regions."
+  },
+  {
+    "id": "q156",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "How does Ncut segment an image graph in practice?",
+    "answer": "It solves a generalized eigenvalue problem and uses the eigenvector of the second smallest eigenvalue to partition the graph."
+  },
+  {
+    "id": "q157",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "Why is the second smallest eigenvector used in Ncut?",
+    "answer": "The smallest eigenvector is the trivial constant solution, so the second one gives the first meaningful partition."
+  },
+  {
+    "id": "q158",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "What is a CRF in segmentation?",
+    "answer": "A Conditional Random Field is an energy-based model that encourages spatially consistent labeling and sharper boundaries."
+  },
+  {
+    "id": "q159",
+    "chapter": 8,
+    "chapterTitle": "Chapter 8 · Segmentation Basics & Classical Methods",
+    "question": "Why are CRFs often used as post-processing?",
+    "answer": "They refine coarse predictions using local and pairwise consistency terms."
+  },
+  {
+    "id": "q160",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is the fully convolutional idea in semantic segmentation?",
+    "answer": "Replace fully connected layers with convolutions so the network produces dense spatial predictions."
+  },
+  {
+    "id": "q161",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is a 1×1 convolution used for in segmentation networks?",
+    "answer": "It maps each spatial feature vector to class logits while keeping the spatial grid."
+  },
+  {
+    "id": "q162",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "Why are segmentation outputs often too coarse in deep encoders?",
+    "answer": "Repeated downsampling reduces spatial resolution."
+  },
+  {
+    "id": "q163",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "Why not keep high resolution throughout the entire encoder?",
+    "answer": "Because it greatly increases memory and computation and can reduce the receptive field benefits of downsampling."
+  },
+  {
+    "id": "q164",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is a dilated or atrous convolution?",
+    "answer": "It is a convolution that inserts gaps between kernel elements so the receptive field grows without increasing parameter count."
+  },
+  {
+    "id": "q165",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "How does dilation help segmentation?",
+    "answer": "It enlarges the receptive field while preserving higher feature-map resolution."
+  },
+  {
+    "id": "q166",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "Does changing the dilation rate change the number of learnable parameters?",
+    "answer": "No. It changes the sampling pattern and receptive field, not the kernel parameter count."
+  },
+  {
+    "id": "q167",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is ASPP?",
+    "answer": "Atrous Spatial Pyramid Pooling applies multiple dilated convolutions with different rates in parallel to capture multi-scale context."
+  },
+  {
+    "id": "q168",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is transposed convolution?",
+    "answer": "A learnable upsampling operation that increases spatial resolution."
+  },
+  {
+    "id": "q169",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is a common artifact of transposed convolution?",
+    "answer": "Checkerboard artifacts caused by uneven overlap."
+  },
+  {
+    "id": "q170",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is resize-convolution?",
+    "answer": "It upsamples features by interpolation and then applies a normal convolution."
+  },
+  {
+    "id": "q171",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "Why is resize-convolution often preferred in practice?",
+    "answer": "It is simpler and tends to avoid checkerboard artifacts."
+  },
+  {
+    "id": "q172",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is the role of skip connections in segmentation decoders?",
+    "answer": "They pass high-resolution information from early encoder layers to the decoder."
+  },
+  {
+    "id": "q173",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is the main idea of U-Net?",
+    "answer": "Use an encoder–decoder architecture with skip connections to combine context and fine spatial detail."
+  },
+  {
+    "id": "q174",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is SegNet’s key idea for upsampling?",
+    "answer": "It reuses pooling indices from the encoder to guide unpooling in the decoder."
+  },
+  {
+    "id": "q175",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is instance segmentation?",
+    "answer": "It predicts a separate mask for each object instance, not just a semantic class per pixel."
+  },
+  {
+    "id": "q176",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is the difference between proposal-based and proposal-free instance segmentation?",
+    "answer": "Proposal-based methods segment each proposed region, while proposal-free methods first predict dense cues and then group pixels into instances."
+  },
+  {
+    "id": "q177",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is Mask R-CNN?",
+    "answer": "Mask R-CNN extends Faster R-CNN with an additional mask prediction head for each RoI."
+  },
+  {
+    "id": "q178",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "Why is RoIAlign important in Mask R-CNN?",
+    "answer": "It avoids quantization errors from RoIPool, which is crucial for accurate pixel masks."
+  },
+  {
+    "id": "q179",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What does the mask head in Mask R-CNN predict?",
+    "answer": "A pixel-wise mask for each proposed object region."
+  },
+  {
+    "id": "q180",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is panoptic segmentation trying to unify?",
+    "answer": "It unifies semantic segmentation of stuff and instance segmentation of things."
+  },
+  {
+    "id": "q181",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is the main limitation of Panoptic FPN mentioned in the course?",
+    "answer": "Its semantic and instance branches are mostly independent and merged by heuristics."
+  },
+  {
+    "id": "q182",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is the key idea of Panoptic FCN?",
+    "answer": "Represent both things and stuff in a uniform fully convolutional framework using generated kernels."
+  },
+  {
+    "id": "q183",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is Panoptic Quality (PQ)?",
+    "answer": "PQ is the standard metric for panoptic segmentation, combining recognition quality and segmentation quality."
+  },
+  {
+    "id": "q184",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "How is PQ decomposed?",
+    "answer": "PQ = SQ × RQ."
+  },
+  {
+    "id": "q185",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is SQ in panoptic evaluation?",
+    "answer": "SQ, segmentation quality, is the average IoU over matched true positives."
+  },
+  {
+    "id": "q186",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "What is RQ in panoptic evaluation?",
+    "answer": "RQ, recognition quality, is an F1-like term based on matched segments, false positives, and false negatives."
+  },
+  {
+    "id": "q187",
+    "chapter": 9,
+    "chapterTitle": "Chapter 9 · Deep Segmentation, Instance & Panoptic",
+    "question": "Why can predicting an unknown class sometimes be helpful in panoptic evaluation?",
+    "answer": "It can avoid turning one missed object into both a false negative for its class and a false positive for another class."
+  },
+  {
+    "id": "q188",
+    "chapter": 10,
+    "chapterTitle": "Chapter 10 · Video Object Segmentation",
+    "question": "What is the goal of video object segmentation (VOS)?",
+    "answer": "To generate accurate and temporally consistent object masks throughout a video."
+  },
+  {
+    "id": "q189",
+    "chapter": 10,
+    "chapterTitle": "Chapter 10 · Video Object Segmentation",
+    "question": "What is semi-supervised VOS?",
+    "answer": "The first-frame mask of the target object is given at inference time, and the goal is to segment it through the rest of the video."
+  },
+  {
+    "id": "q190",
+    "chapter": 10,
+    "chapterTitle": "Chapter 10 · Video Object Segmentation",
+    "question": "What is unsupervised or zero-shot VOS?",
+    "answer": "No object mask is given at inference time; the method must discover and segment salient moving objects by itself."
+  },
+  {
+    "id": "q191",
+    "chapter": 10,
+    "chapterTitle": "Chapter 10 · Video Object Segmentation",
+    "question": "Why is VOS harder than image segmentation?",
+    "answer": "Because it must remain temporally consistent under occlusion, appearance change, scale change, and motion."
+  },
+  {
+    "id": "q192",
+    "chapter": 10,
+    "chapterTitle": "Chapter 10 · Video Object Segmentation",
+    "question": "What two ingredients are especially important in VOS?",
+    "answer": "An appearance model and a motion model."
+  },
+  {
+    "id": "q193",
+    "chapter": 10,
+    "chapterTitle": "Chapter 10 · Video Object Segmentation",
+    "question": "What is optical flow?",
+    "answer": "Optical flow is the apparent motion field of image patterns between two frames."
+  },
+  {
+    "id": "q194",
+    "chapter": 10,
+    "chapterTitle": "Chapter 10 · Video Object Segmentation",
+    "question": "What is the brightness constancy assumption in optical flow?",
+    "answer": "It assumes the brightness of a small surface patch stays constant between adjacent frames."
+  },
+  {
+    "id": "q195",
+    "chapter": 10,
+    "chapterTitle": "Chapter 10 · Video Object Segmentation",
+    "question": "What is spatial coherence in optical flow?",
+    "answer": "It assumes neighboring points tend to move similarly because they often belong to the same surface."
+  },
+  {
+    "id": "q196",
+    "chapter": 10,
+    "chapterTitle": "Chapter 10 · Video Object Segmentation",
+    "question": "What is temporal persistence in optical flow?",
+    "answer": "It assumes motion changes gradually over time."
+  },
+  {
+    "id": "q197",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "Why were transformers attractive for vision after CNNs?",
+    "answer": "They allow direct long-range interactions instead of relying only on stacked local convolutions."
+  },
+  {
+    "id": "q198",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "What is the core idea of attention?",
+    "answer": "Each token can compare itself to other tokens and aggregate the most relevant information."
+  },
+  {
+    "id": "q199",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "What are Query, Key, and Value in self-attention?",
+    "answer": "Query is the requesting representation, Key is used for similarity comparison, and Value is the information to be aggregated."
+  },
+  {
+    "id": "q200",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "How is self-attention computed at a high level?",
+    "answer": "Compute similarities between queries and keys, normalize them with softmax, and use them to weight the values."
+  },
+  {
+    "id": "q201",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "Why is the scaling factor used in attention?",
+    "answer": "It keeps similarity magnitudes under control so softmax does not saturate too easily."
+  },
+  {
+    "id": "q202",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "What is the output dimension of self-attention relative to the token sequence?",
+    "answer": "It preserves the sequence length and usually projects back to the model dimension."
+  },
+  {
+    "id": "q203",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "What is multi-head attention?",
+    "answer": "It runs several attention heads in parallel so different relations can be modeled simultaneously."
+  },
+  {
+    "id": "q204",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "Why does self-attention have quadratic complexity in token count?",
+    "answer": "Because it computes pairwise similarities between tokens."
+  },
+  {
+    "id": "q205",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "Why do transformers need positional encoding or positional embedding?",
+    "answer": "Because self-attention alone is permutation-equivariant and does not know token order or spatial position."
+  },
+  {
+    "id": "q206",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "What is the role of positional encoding?",
+    "answer": "It injects position information so the model can reason about order and spatial layout."
+  },
+  {
+    "id": "q207",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "What is the main idea of the Vision Transformer (ViT)?",
+    "answer": "Split the image into patches, embed them as tokens, add positional embeddings, and process them with a transformer encoder."
+  },
+  {
+    "id": "q208",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "What is the class token in ViT used for?",
+    "answer": "It aggregates image-level information for classification."
+  },
+  {
+    "id": "q209",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "Why did early ViTs need large-scale pretraining?",
+    "answer": "They lack the strong inductive biases of CNNs, so they benefit more from large datasets."
+  },
+  {
+    "id": "q210",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "Name two CNN inductive biases that ViT lacks.",
+    "answer": "Locality and translation-related structure are much weaker in plain ViT."
+  },
+  {
+    "id": "q211",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "What is DETR?",
+    "answer": "DETR is a transformer-based object detector that predicts a fixed set of boxes and classes in parallel."
+  },
+  {
+    "id": "q212",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "Why does DETR not need NMS?",
+    "answer": "Because training uses bipartite Hungarian matching to enforce unique prediction-to-ground-truth assignments."
+  },
+  {
+    "id": "q213",
+    "chapter": 11,
+    "chapterTitle": "Chapter 11 · Transformers in Vision",
+    "question": "What is the broad idea of MaskFormer or Mask2Former?",
+    "answer": "They unify segmentation tasks by predicting masks in a transformer-based framework."
+  },
+  {
+    "id": "q214",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is the goal of self-supervised learning in one sentence?",
+    "answer": "To learn useful representations from unlabeled data by defining supervisory signals from the data itself."
+  },
+  {
+    "id": "q215",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What kind of representation do we want from SSL?",
+    "answer": "A compact but descriptive representation that transfers well to downstream tasks."
+  },
+  {
+    "id": "q216",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "Name the three broad categories of self-supervision discussed in the course.",
+    "answer": "Pretext tasks, contrastive learning, and non-contrastive learning."
+  },
+  {
+    "id": "q217",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is a pretext task?",
+    "answer": "An auxiliary task with automatically generated labels that is used to learn useful features."
+  },
+  {
+    "id": "q218",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is the rotation prediction pretext task?",
+    "answer": "Randomly rotate an image by one of several angles and train the model to predict the rotation class."
+  },
+  {
+    "id": "q219",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What does the rotation task exploit in natural image datasets?",
+    "answer": "Photographic bias: many objects tend to appear in a canonical upright orientation."
+  },
+  {
+    "id": "q220",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is the jigsaw pretext task?",
+    "answer": "Shuffle image patches and train the model to predict the correct arrangement or permutation."
+  },
+  {
+    "id": "q221",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is the intuition behind colorization as a pretext task?",
+    "answer": "To colorize correctly, the model often needs to understand semantic content."
+  },
+  {
+    "id": "q222",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "Why is Lab color space used in colorization?",
+    "answer": "Because distances there are more perceptually meaningful than raw RGB distances."
+  },
+  {
+    "id": "q223",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is contrastive learning?",
+    "answer": "It pulls together positive pairs and pushes apart negative pairs in representation space."
+  },
+  {
+    "id": "q224",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "How are positive pairs created without labels in contrastive learning?",
+    "answer": "Usually by applying different augmentations to the same image."
+  },
+  {
+    "id": "q225",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "How are negative pairs obtained in contrastive learning?",
+    "answer": "Other images in the batch or memory bank act as negatives."
+  },
+  {
+    "id": "q226",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is the intuition behind temperature in contrastive learning?",
+    "answer": "It controls how sharply the model focuses on the most similar samples; a lower temperature acts like a harder margin."
+  },
+  {
+    "id": "q227",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is the geometric intuition of normalized contrastive learning features?",
+    "answer": "They lie on a hypersphere, where the goal is alignment of positives and uniform spread of overall representations."
+  },
+  {
+    "id": "q228",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "Name two contrastive SSL methods from the lecture.",
+    "answer": "SimCLR and MoCo."
+  },
+  {
+    "id": "q229",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is DINO?",
+    "answer": "DINO is a self-distillation method without labels using student and teacher networks."
+  },
+  {
+    "id": "q230",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is the student–teacher idea in DINO?",
+    "answer": "The student is trained to match the teacher’s output distribution under different views of the same image."
+  },
+  {
+    "id": "q231",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "Which network is usually used at inference time in DINO?",
+    "answer": "The student network."
+  },
+  {
+    "id": "q232",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "Why is DINO important in this course?",
+    "answer": "Its features are semantically strong and useful for segmentation, clustering, and dense correspondence."
+  },
+  {
+    "id": "q233",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is a common limitation of DINO features mentioned in the lecture?",
+    "answer": "They can lack some geometric understanding, such as precise left–right structure."
+  },
+  {
+    "id": "q234",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is a masked autoencoder (MAE)?",
+    "answer": "It masks part of the input and trains the model to reconstruct the missing content."
+  },
+  {
+    "id": "q235",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is unsupervised segmentation with strong pretrained features in this course?",
+    "answer": "Use pretrained features such as DINO embeddings and cluster them with methods like k-means, GMM, or spectral clustering."
+  },
+  {
+    "id": "q236",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is the practical idea of semi-supervised learning?",
+    "answer": "Train with both labeled and unlabeled data to improve performance when labels are limited."
+  },
+  {
+    "id": "q237",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "Name the three classical assumptions behind semi-supervised learning.",
+    "answer": "Smoothness assumption, low-density assumption, and manifold assumption."
+  },
+  {
+    "id": "q238",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is the smoothness assumption?",
+    "answer": "Nearby points should tend to share the same label."
+  },
+  {
+    "id": "q239",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is the low-density assumption?",
+    "answer": "The decision boundary should pass through low-density regions of the data distribution."
+  },
+  {
+    "id": "q240",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is the manifold assumption?",
+    "answer": "Data lie near low-dimensional manifolds, and points on the same manifold tend to share labels."
+  },
+  {
+    "id": "q241",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is self-training in semi-supervised learning?",
+    "answer": "Train a model on labeled data, generate pseudo-labels for unlabeled data, select confident predictions, and retrain."
+  },
+  {
+    "id": "q242",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is the main trade-off when choosing the pseudo-label confidence threshold?",
+    "answer": "A high threshold yields cleaner but fewer pseudo-labels, while a low threshold yields more labels but more noise."
+  },
+  {
+    "id": "q243",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is consistency regularization?",
+    "answer": "It encourages the model to produce stable predictions under input perturbations or augmentation."
+  },
+  {
+    "id": "q244",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What are virtual adversarial networks trying to do?",
+    "answer": "Apply limited worst-case perturbations to the input while encouraging the model output to remain unchanged."
+  },
+  {
+    "id": "q245",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "Why is semi-supervised learning so important in practice?",
+    "answer": "Because unlabeled data are abundant while fine labels are expensive, and combining both often gives the best performance."
+  },
+  {
+    "id": "q246",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is Segment Anything (SAM) in one sentence?",
+    "answer": "SAM is a promptable segmentation model trained at massive scale to produce segmentation masks from user prompts."
+  },
+  {
+    "id": "q247",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What kinds of prompts can SAM accept according to the course notes and exam style?",
+    "answer": "Points, boxes, and text-related prompts are considered valid prompts in the course material context."
+  },
+  {
+    "id": "q248",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "Why is SAM relevant to semi-supervised learning?",
+    "answer": "Its training pipeline uses large-scale pseudo-labeling and automatic mask generation in addition to manual annotation."
+  },
+  {
+    "id": "q249",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is the broad idea of the SAM data engine?",
+    "answer": "Use model-assisted annotation, semi-automatic labeling, and then fully automatic labeling to scale the dataset."
+  },
+  {
+    "id": "q250",
+    "chapter": 12,
+    "chapterTitle": "Chapter 12 · Self-Supervised, Unsupervised & Semi-Supervised Learning",
+    "question": "What is SAM2?",
+    "answer": "SAM2 extends the Segment Anything idea to video and maintains memory across frames."
+  }
+]
+</script>
+
+<script>
+(() => {
+  const STORAGE_KEY = "cv3_dark_short_answer_state_v1";
+  const BANK = JSON.parse(document.getElementById("qa-data").textContent);
+
+  const chapterListEl = document.getElementById("chapterList");
+  const mobileChapterListEl = document.getElementById("mobileChapterList");
+  const questionCard = document.getElementById("questionCard");
+  const answerWrap = document.getElementById("answerWrap");
+  const emptyState = document.getElementById("emptyState");
+
+  const questionText = document.getElementById("questionText");
+  const answerBody = document.getElementById("answerBody");
+  const questionMeta = document.getElementById("questionMeta");
+  const toggleAnswerBtn = document.getElementById("toggleAnswerBtn");
+
+  const statusChapter = document.getElementById("statusChapter");
+  const statusMode = document.getElementById("statusMode");
+  const statusIndex = document.getElementById("statusIndex");
+  const statTotal = document.getElementById("statTotal");
+  const statWrong = document.getElementById("statWrong");
+  const statImportant = document.getElementById("statImportant");
+
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const copyBtn = document.getElementById("copyBtn");
+
+  const importantBtn = document.getElementById("importantBtn");
+  const wrongBtn = document.getElementById("wrongBtn");
+
+  const modeAllSeq = document.getElementById("mode-all-seq");
+  const modeAllShuffle = document.getElementById("mode-all-shuffle");
+  const modeWrongSeq = document.getElementById("mode-wrong-seq");
+  const modeWrongShuffle = document.getElementById("mode-wrong-shuffle");
+  const modeImportantSeq = document.getElementById("mode-important-seq");
+  const modeImportantShuffle = document.getElementById("mode-important-shuffle");
+  const pickRandom = document.getElementById("pick-random");
+  const resetView = document.getElementById("reset-view");
+
+  function loadState() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      return {
+        chapter: saved.chapter || "all",
+        pool: saved.pool || "all",
+        shuffled: !!saved.shuffled,
+        currentId: saved.currentId || null,
+        answerVisible: !!saved.answerVisible,
+        wrongIds: Array.isArray(saved.wrongIds) ? saved.wrongIds : [],
+        importantIds: Array.isArray(saved.importantIds) ? saved.importantIds : [],
+        orderIds: Array.isArray(saved.orderIds) ? saved.orderIds : []
+      };
+    } catch {
+      return {
+        chapter: "all",
+        pool: "all",
+        shuffled: false,
+        currentId: null,
+        answerVisible: false,
+        wrongIds: [],
+        importantIds: [],
+        orderIds: []
+      };
+    }
+  }
+
+  let state = loadState();
+
+  function saveState() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function wrongSet() {
+    return new Set(state.wrongIds);
+  }
+
+  function importantSet() {
+    return new Set(state.importantIds);
+  }
+
+  function allChapters() {
+    const map = new Map();
+    for (const item of BANK) {
+      if (!map.has(item.chapter)) map.set(item.chapter, item.chapterTitle);
+    }
+    return [...map.entries()].sort((a,b) => a[0] - b[0]).map(([chapter, chapterTitle]) => ({ chapter, chapterTitle }));
+  }
+
+  function countByChapter(pool = "all") {
+    const wrong = wrongSet();
+    const important = importantSet();
+    const counts = new Map();
+    for (const item of BANK) {
+      if (pool === "wrong" && !wrong.has(item.id)) continue;
+      if (pool === "important" && !important.has(item.id)) continue;
+      counts.set(item.chapter, (counts.get(item.chapter) || 0) + 1);
+    }
+    return counts;
+  }
+
+  function renderChapterButtons() {
+    const chapters = allChapters();
+    const counts = countByChapter(state.pool);
+
+    const buildButtons = (container) => {
+      container.innerHTML = "";
+      const allCount = getPoolFiltered("all").length;
+      const btnAll = document.createElement("button");
+      btnAll.className = "chapter-btn" + (state.chapter === "all" ? " active" : "");
+      btnAll.innerHTML = `<span>全部章節</span><span class="count">${allCount}</span>`;
+      btnAll.addEventListener("click", () => {
+        state.chapter = "all";
+        rebuild(false);
+      });
+      container.appendChild(btnAll);
+
+      for (const ch of chapters) {
+        const btn = document.createElement("button");
+        btn.className = "chapter-btn" + (String(state.chapter) === String(ch.chapter) ? " active" : "");
+        const count = counts.get(ch.chapter) || 0;
+        btn.innerHTML = `<span>${ch.chapterTitle}</span><span class="count">${count}</span>`;
+        btn.addEventListener("click", () => {
+          state.chapter = ch.chapter;
+          rebuild(false);
+        });
+        container.appendChild(btn);
+      }
+    };
+
+    buildButtons(chapterListEl);
+    buildButtons(mobileChapterListEl);
+  }
+
+  function getPoolFiltered(chapterOverride = null) {
+    const wrong = wrongSet();
+    const important = importantSet();
+    const chapter = chapterOverride === null ? state.chapter : chapterOverride;
+    return BANK.filter(item => {
+      if (chapter !== "all" && String(item.chapter) !== String(chapter)) return false;
+      if (state.pool === "wrong" && !wrong.has(item.id)) return false;
+      if (state.pool === "important" && !important.has(item.id)) return false;
+      return true;
+    });
+  }
+
+  function shuffleArray(arr) {
+    const copy = arr.slice();
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
+  function getOrderedItems(forceReshuffle = false) {
+    const filtered = getPoolFiltered();
+    const ids = filtered.map(x => x.id);
+    if (!state.shuffled) {
+      state.orderIds = ids;
+      return filtered;
+    }
+
+    const validSavedOrder = !forceReshuffle &&
+      Array.isArray(state.orderIds) &&
+      state.orderIds.length === ids.length &&
+      state.orderIds.every(id => ids.includes(id));
+
+    const orderIds = validSavedOrder ? state.orderIds.slice() : shuffleArray(ids);
+    state.orderIds = orderIds;
+
+    const map = new Map(filtered.map(item => [item.id, item]));
+    return orderIds.map(id => map.get(id)).filter(Boolean);
+  }
+
+  function currentModeLabel() {
+    if (state.pool === "all" && !state.shuffled) return "全部順序";
+    if (state.pool === "all" && state.shuffled) return "全部亂序";
+    if (state.pool === "wrong" && !state.shuffled) return "只看錯題";
+    if (state.pool === "wrong" && state.shuffled) return "錯題亂序";
+    if (state.pool === "important" && !state.shuffled) return "只看重點";
+    if (state.pool === "important" && state.shuffled) return "重點亂序";
+    return "自訂模式";
+  }
+
+  function updateModeButtons() {
+    const states = [
+      [modeAllSeq, state.pool === "all" && !state.shuffled],
+      [modeAllShuffle, state.pool === "all" && state.shuffled],
+      [modeWrongSeq, state.pool === "wrong" && !state.shuffled],
+      [modeWrongShuffle, state.pool === "wrong" && state.shuffled],
+      [modeImportantSeq, state.pool === "important" && !state.shuffled],
+      [modeImportantShuffle, state.pool === "important" && state.shuffled]
+    ];
+    for (const [btn, active] of states) {
+      btn.classList.toggle("primary", active);
+      btn.classList.toggle("active", active);
+    }
+  }
+
+  function setMode(pool, shuffled) {
+    state.pool = pool;
+    state.shuffled = shuffled;
+    rebuild(true);
+  }
+
+  function rebuild(forceReshuffle = false) {
+    renderChapterButtons();
+    updateModeButtons();
+    render(forceReshuffle);
+  }
+
+  function render(forceReshuffle = false) {
+    const ordered = getOrderedItems(forceReshuffle);
+    const wrong = wrongSet();
+    const important = importantSet();
+
+    statTotal.textContent = String(BANK.length);
+    statWrong.textContent = String(wrong.size);
+    statImportant.textContent = String(important.size);
+
+    statusChapter.textContent = `章節：${state.chapter === "all" ? "全部" : BANK.find(x => String(x.chapter) === String(state.chapter))?.chapterTitle || state.chapter}`;
+    statusMode.textContent = `模式：${currentModeLabel()}`;
+
+    if (!ordered.length) {
+      questionCard.classList.add("hidden");
+      answerWrap.classList.add("hidden");
+      emptyState.classList.remove("hidden");
+      statusIndex.textContent = "第 0 / 0 題";
+      prevBtn.disabled = nextBtn.disabled = true;
+      importantBtn.disabled = wrongBtn.disabled = toggleAnswerBtn.disabled = copyBtn.disabled = true;
+      saveState();
+      return;
+    }
+
+    emptyState.classList.add("hidden");
+    questionCard.classList.remove("hidden");
+    answerWrap.classList.remove("hidden");
+    prevBtn.disabled = nextBtn.disabled = false;
+    importantBtn.disabled = wrongBtn.disabled = toggleAnswerBtn.disabled = copyBtn.disabled = false;
+
+    let index = 0;
+    if (state.currentId) {
+      const found = ordered.findIndex(x => x.id === state.currentId);
+      if (found >= 0) index = found;
+    }
+    if (index < 0) index = 0;
+    if (index > ordered.length - 1) index = ordered.length - 1;
+
+    const item = ordered[index];
+    state.currentId = item.id;
+    statusIndex.textContent = `第 ${index + 1} / ${ordered.length} 題`;
+
+    questionMeta.innerHTML = "";
+    const metaPieces = [
+      item.chapterTitle,
+      item.id,
+      wrong.has(item.id) ? "已標錯題" : null,
+      important.has(item.id) ? "已標重點" : null,
+    ].filter(Boolean);
+
+    for (const text of metaPieces) {
+      const span = document.createElement("span");
+      span.className = "chip";
+      span.textContent = text;
+      questionMeta.appendChild(span);
+    }
+
+    questionText.textContent = item.question;
+    answerBody.textContent = item.answer;
+
+    if (state.answerVisible) {
+      answerBody.classList.remove("hidden");
+      toggleAnswerBtn.textContent = "隱藏答案";
+    } else {
+      answerBody.classList.add("hidden");
+      toggleAnswerBtn.textContent = "顯示答案";
+    }
+
+    importantBtn.classList.toggle("active", important.has(item.id));
+    wrongBtn.classList.toggle("active", wrong.has(item.id));
+
+    saveState();
+  }
+
+  function orderedItemsNow() {
+    return getOrderedItems(false);
+  }
+
+  function goTo(delta) {
+    const ordered = orderedItemsNow();
+    if (!ordered.length) return;
+    const idx = Math.max(0, ordered.findIndex(x => x.id === state.currentId));
+    const next = Math.max(0, Math.min(ordered.length - 1, idx + delta));
+    state.currentId = ordered[next].id;
+    state.answerVisible = false;
+    render(false);
+  }
+
+  function goToEdge(which) {
+    const ordered = orderedItemsNow();
+    if (!ordered.length) return;
+    state.currentId = which === "first" ? ordered[0].id : ordered[ordered.length - 1].id;
+    state.answerVisible = false;
+    render(false);
+  }
+
+  function toggleMark(kind) {
+    const items = orderedItemsNow();
+    if (!items.length || !state.currentId) return;
+    const key = kind === "wrong" ? "wrongIds" : "importantIds";
+    const set = new Set(state[key]);
+    if (set.has(state.currentId)) set.delete(state.currentId);
+    else set.add(state.currentId);
+    state[key] = [...set];
+    renderChapterButtons();
+    render(false);
+  }
+
+  function pickRandomQuestion() {
+    const ordered = orderedItemsNow();
+    if (!ordered.length) return;
+    const idx = Math.floor(Math.random() * ordered.length);
+    state.currentId = ordered[idx].id;
+    state.answerVisible = false;
+    render(false);
+  }
+
+  function resetViewState() {
+    state.chapter = "all";
+    state.pool = "all";
+    state.shuffled = false;
+    state.answerVisible = false;
+    state.orderIds = [];
+    rebuild(false);
+  }
+
+  toggleAnswerBtn.addEventListener("click", () => {
+    state.answerVisible = !state.answerVisible;
+    render(false);
+  });
+
+  prevBtn.addEventListener("click", () => goTo(-1));
+  nextBtn.addEventListener("click", () => goTo(1));
+
+  importantBtn.addEventListener("click", () => toggleMark("important"));
+  wrongBtn.addEventListener("click", () => toggleMark("wrong"));
+
+
+  modeAllSeq.addEventListener("click", () => setMode("all", false));
+  modeAllShuffle.addEventListener("click", () => setMode("all", true));
+  modeWrongSeq.addEventListener("click", () => setMode("wrong", false));
+  modeWrongShuffle.addEventListener("click", () => setMode("wrong", true));
+  modeImportantSeq.addEventListener("click", () => setMode("important", false));
+  modeImportantShuffle.addEventListener("click", () => setMode("important", true));
+
+  pickRandom.addEventListener("click", pickRandomQuestion);
+  resetView.addEventListener("click", resetViewState);
+
+  copyBtn.addEventListener("click", async () => {
+    const current = BANK.find(x => x.id === state.currentId);
+    if (!current) return;
+    const text = `Question:\n${current.question}\n\nAnswer:\n${current.answer}`;
+    try {
+      await navigator.clipboard.writeText(text);
+      copyBtn.textContent = "✅ 已複製";
+      setTimeout(() => copyBtn.textContent = "📋 複製題目", 1200);
+    } catch {
+      copyBtn.textContent = "⚠️ 複製失敗";
+      setTimeout(() => copyBtn.textContent = "📋 複製題目", 1200);
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") goTo(1);
+    if (e.key === "ArrowLeft") goTo(-1);
+    if (e.key.toLowerCase() === "a") {
+      state.answerVisible = !state.answerVisible;
+      render(false);
+    }
+    if (e.key.toLowerCase() === "w") toggleMark("wrong");
+    if (e.key.toLowerCase() === "i") toggleMark("important");
+    if (e.key.toLowerCase() === "r") pickRandomQuestion();
+  });
+
+  rebuild(false);
+})();
+</script>
+</body>
+</html>
