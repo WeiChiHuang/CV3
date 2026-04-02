@@ -808,8 +808,10 @@
     "id": "q025",
     "chapter": 2,
     "chapterTitle": "Chapter 2 · Object Detection I",
-    "question": "SSD (sum of squared differences) 公式：",
-    "answer": "Normalised cross-correlation (NCC):\nZero-normalised cross-correlation (ZNCC):",
+    "question": "SSD (sum of squared differences) 公式：Normalised cross-correlation (NCC):\nZero-normalised cross-correlation (ZNCC) ",
+    "answer": "SSD(I,T) = Σ_{x,y} ( I(x,y) - T(x,y) )^2\n
+  NCC(I,T) = [ Σ_{x,y} I(x,y) T(x,y) ] / [ sqrt(Σ_{x,y} I(x,y)^2)\n
+  ZNCC(I,T) = [ Σ_{x,y} (I(x,y)-μ_I)(T(x,y)-μ_T) ] / [ sqrt(Σ_{x,y}(I(x,y)-μ_I)^2) ",
     "keypoints": [
       "Normalised cross-correlation (NCC):",
       "Zero-normalised cross-correlation (ZNCC):"
@@ -1275,7 +1277,7 @@
     "question": "What is the runtime complexity of the naive NMS algorithm?",
     "answer": "because every bounding box is compared with all other boxes.",
     "keypoints": [
-      "because every bounding box is compared with all other boxes."
+      "O（n^2）because every bounding box is compared with all other boxes."
     ]
   },
   {
